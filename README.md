@@ -17,6 +17,7 @@ A Python package for actuarial risk modeling and simulation.
 - **Chainladder Integration**: Convert simulated claims into triangle format for reserving, IBNR estimation, and ultimate loss projection using the `chainladder` package
 - **Reproducibility**: Seed-controlled simulations and transparent validation tools designed to meet open-source and CAS review standards
 - **Python-Native**: Built on ActStats, NumPy, pandas, and SciPy for seamless integration with the modern data science and actuarial analytics stack
+- **MCP Server**: Drive the entire toolkit from an LLM client (Claude Desktop/Code) via the built-in [Model Context Protocol server](docs/mcp_server.md)
 
 ## Installation
 
@@ -66,9 +67,33 @@ sev_fitter.best_fits
 sev_fitter.selected_fit
 ```
 
+## MCP Server
+
+ActSim can run as a [Model Context Protocol](https://modelcontextprotocol.io)
+server, exposing every public function as a tool for LLM clients such as Claude
+Desktop and Claude Code.
+
+```bash
+pip install "actsim[mcp]"   # install with the MCP extra
+actsim-mcp                  # launch the server (stdio transport)
+```
+
+Claude Desktop configuration:
+
+```json
+{
+  "mcpServers": {
+    "actsim": { "command": "actsim-mcp" }
+  }
+}
+```
+
+See the [MCP server guide](docs/mcp_server.md) for the full tool reference.
+
 ## Documentation
 
 - [User Guide](docs/user_guide.md) - Getting started and basic usage
+- [MCP Server](docs/mcp_server.md) - Run ActSim as an MCP server for LLM clients
 - [API Reference](docs/api_reference.md) - Detailed API documentation
 - [Examples](docs/examples.md) - Code examples and tutorials
 - [Development](docs/development.md) - Contributing and development guidelines

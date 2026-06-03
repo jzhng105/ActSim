@@ -24,12 +24,18 @@ dependencies = [
     "pyyaml>=5.0"
 ]
 
+[project.optional-dependencies]
+mcp = [
+    "mcp>=1.2"
+]
+
 [project.urls]
 Homepage = "https://github.com/jzhng105/actsim"
 Documentation = "https://github.com/jzhng105/actsim/docs"
 
 [project.scripts]
 actsim = "actsim.cli:main"
+actsim-mcp = "actsim.mcp_server:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
